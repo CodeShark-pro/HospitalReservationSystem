@@ -1,0 +1,66 @@
+{% extends 'navigationbar.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container mt-5">
+    <h2 class="text-center text-primary mb-4">View Staff</h2>
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Mobile Number</th>
+                <th>Occupation</th>
+                <th>Shift Timings</th>
+                <th>Availability</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for staff in staffs %}
+            <tr>
+                <td>{{ staff.name }}</td>
+                <td>{{ staff.mobile_number }}</td>
+                <td>{{ staff.occupation }}</td>
+                <td>{{ staff.shift }}</td>
+                <td>{{ staff.availability }}</td>
+                <td>
+                  <a href="{% url 'delete_staff' staff.id %}" 
+                  onclick="return confirm('Are you sure?')" 
+                  class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'add_staff' %}" class="btn btn-success float-end rounded-circle shadow" 
+      style="width: 60px; height: 60px; font-size: 28px; text-align: center; line-height: 45px;">+</a>
+</div>
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+
+<!-- jQuery (Required for DataTables) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+<!-- Initialize DataTables -->
+<script>
+  $(document).ready(function() {
+    $('table').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+});
+</script>
+{% endblock %}

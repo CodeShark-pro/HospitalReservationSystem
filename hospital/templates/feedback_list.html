@@ -1,0 +1,38 @@
+{% extends 'navigationbar.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container feedback-container">
+    <div class="card shadow dynamic-bg">
+        <div class="card-body">
+            <h1 class="text-center text-light">Feedback List</h1>
+            <h2 class="text-center text-light">See What Others Say</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container feedback-container">
+    {% if feedbacks %}
+        <div class="list-group">
+            {% for feedback in feedbacks %}
+                <div class="list-group-item list-group-item-action flex-column align-items-start shadow-sm mb-3 rounded">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ feedback.name }}</h5>
+                        <small class="text-muted">{{ feedback.created_at|date:"M d, Y" }}</small>
+                    </div>
+                    <p class="mb-1"><strong>Email:</strong> {{ feedback.email }}</p>
+                    <p class="mb-1"><strong>Message:</strong> {{ feedback.message }}</p>
+                    
+
+                    {% if feedback.additional_feedback %}
+                        <p class="mb-1 text-danger"><strong>Additional Comments:</strong> {{ feedback.additional_feedback }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center">No feedback submitted yet.</div>
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'navigationbar.html' %}
+{% load static %}
+{% block body %} 
+
+<div class="container">
+  <h2 class="text-center">Add Doctor</h2>
+  <br><br>
+  <form method="POST" action="{% url 'add_doctor' %}">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-md-6">
+        <label>Doctor Name</label>
+        <input type="text" name="name" class="form-control" placeholder="Enter Doctor Name" required>
+      </div>
+
+      <div class="col-md-6">
+        <label>Doctor Phone Number</label>
+        <input type="tel" name="mobile" class="form-control" placeholder="Enter Doctor Phone Number" required pattern="[0-9]{10}">
+      </div>
+
+      <div class="col-md-6">
+        <label>Doctor Qualification</label>
+        <input type="text" name="qualification" class="form-control" placeholder="Enter Doctor Qualification" required>
+      </div>
+
+      <div class="col-md-6">
+        <label>Doctor Department</label>
+        <select name="department" class="form-control" required>
+            <option value="">Select Department</option>
+            <option value="Cardiology">Cardiology</option>
+            <option value="Oncology">Oncology</option>
+            <option value="Orthopaedics">Orthopaedics</option>
+            <option value="Neurology">Neurology</option>
+            <option value="Urology">Urology</option>
+            <option value="Gastroenterology">Gastroenterology</option>
+        </select>
+    </div>
+    <br> 
+      <div class="col-md-6">
+        <label>Doctor Speciality</label>
+        <input type="text" name="special" class="form-control" placeholder="Enter Doctor Speciality" required>
+      </div>
+    </div>
+    <br>
+    <input type="submit" value="Add Doctor" class="btn btn-primary mt-3">
+  </form>
+</div>
+
+{% if error == "no" %}
+<script>
+    alert("Record Saved Successfully!");
+    window.location.href = "{% url 'view_doctor' %}";
+</script> 
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Something Went Wrong. Try Again!");
+    window.location.href = "{% url 'view_doctor' %}";
+</script>
+{% endif %}
+
+{% endblock %}

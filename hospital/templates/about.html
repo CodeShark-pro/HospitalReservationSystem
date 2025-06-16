@@ -1,0 +1,54 @@
+{% extends 'navigationbar.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container about-us-section mt-5 aboutic">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{% static 'images/ITS.jpg' %}" alt="College" class="img-fluid about-us-image">
+        </div>
+        <div class="col-md-8">
+            <h1>About Us</h1>
+            <p>
+                Welcome to our Hospital Management Project! This project is created for our Major Project under the guidance of <strong>Prof. Shweta Kumar</strong>, using Python and related technologies.
+            </p>
+            <h5>Team Members</h5>
+            <ul>
+                <li><strong>Nihal Panwar</strong> - Roll No: 220934106275 - Semester: 6th - Section: B</li>
+                <li><strong>Sanya Chadha</strong> - Roll No: 220934106370 - Semester: 6th - Section: B</li>
+                <li><strong>Mayank Singh Karki</strong> - Roll No: 220934106240 - Semester: 6th - Section: B</li>
+            </ul>
+            <h5>Technologies Used</h5>
+            <ul>
+                <li><strong>Frontend:</strong> HTML, CSS, JavaScript, Bootstrap, Django Templates</li>
+                <li><strong>Backend:</strong> Python with Django Framework</li>
+                <li><strong>Database:</strong> SQLite</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f8f9fa;
+        color: #333;
+    }
+    h1, h5 {
+        color: #007bff;
+        text-align: center;
+    }
+    .about-us-section {
+        padding: 20px;
+        text-align: left;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .about-us-image {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+</style>
+
+{% endblock %}

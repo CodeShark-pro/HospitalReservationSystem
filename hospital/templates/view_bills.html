@@ -1,0 +1,68 @@
+{% extends 'navigationbar.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container" style="margin-top:50px">
+    <h1 class="text-center text-success mb-4">Billing Records</h1>
+    <table class="table table-bordered table-striped table-hover" id="billingTable">
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>Room Type</th>
+                <th>Room Charge</th>
+                <th>Diagnosis Charge</th>
+                <th>Scan Charge</th>
+                <th>Medicine Charge</th>
+                <th>GST (%)</th>
+                <th>Total Amount</th>
+                <th>Actions</th>
+                <th>Invoice</th>
+                <th>Payment</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bill in bills %}
+            <tr>
+                <td>{{ bill.patient.name }}</td>
+                <td>{{ bill.patient.room_type }}</td>
+                <td>₹{{ bill.get_room_charge }}</td>
+                <td>₹{{ bill.diagnosis_charge }}</td>
+                <td>₹{{ bill.scan_charge }}</td>
+                <td>₹{{ bill.medicine_charge }}</td>
+                <td>{{ bill.gst }}%</td>
+                <td><strong>₹{{ bill.total_amount|floatformat:2 }}</strong></td>
+                <td>
+                    <a href="{% url 'delete_bill' bill.id %}" onclick="return confirm('Are you sure?')" class="btn btn-danger">Delete</a>
+                </td>
+                <td>
+                <a href="{% url 'bill_invoice' bill.id %}" class="btn btn-secondary">Download Invoice (PDF)</a>
+                </td>
+                <td>
+                <a href="https://paytm.com/" class="btn btn-success" target="_blank">Make Payment</a>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Floating Button for Generating a Bill -->
+<a href="{% url 'select_patient_for_bill' %}" class="floating-btn btn btn-primary">
+    <i class="fas fa-plus"></i> Generate Bill
+</a>
+
+<!-- DataTables Script -->
+<script>
+$(document).ready(function() {
+    new DataTable('#billingTable', {
+        layout: {
+            topStart: {
+                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+            }
+        }
+    });
+});
+</script>
+
+{% endblock %}

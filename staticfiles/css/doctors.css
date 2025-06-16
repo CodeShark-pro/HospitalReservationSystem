@@ -1,0 +1,89 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #d7efff;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-top: 20px;
+  color: #333;
+}
+
+p {
+  color: #555;
+  font-size: 1.1rem;
+}
+
+.doctor-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.doctor-card {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.doctor-card:hover {
+  transform: scale(1.05);
+}
+
+.doctor-card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-right: 20px;
+  object-fit: cover;
+}
+
+.doctor-card h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #2c3e50;
+}
+
+.doctor-card p {
+  margin: 5px 0 0;
+  text-align: left;
+}
+
+.doctor-details-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.doctor-section {
+  margin: 40px 0;
+  text-align: left;
+}
+
+.doctor-section img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s, transform 1s;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+

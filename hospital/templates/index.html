@@ -1,0 +1,140 @@
+{% extends 'navigationbar.html' %}
+{% load static %}
+
+{% block body %} 
+<div id="receptionCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <!-- Card 1 -->
+      <div class="carousel-item active">
+        <div class="card d-flex flex-row align-items-center">
+          <img src="{% static 'images/hospital-interior1.jpg' %}" alt="Hospital Interior" class="card-img-left carousel-image">
+          <div class="card-body text-start">
+            <h3 class="card-title">Modern Infrastructure</h3>
+            <p class="card-text">World-class facilities designed for patient care and comfort.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="carousel-item">
+        <div class="card d-flex flex-row align-items-center">
+          <img src="{% static 'images/hospital-waiting.jpg' %}" alt="Waiting Area" class="card-img-left carousel-image">
+          <div class="card-body text-start">
+            <h3 class="card-title">Comfortable Waiting Area</h3>
+            <p class="card-text">A relaxing environment for visitors while they wait.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="carousel-item">
+        <div class="card d-flex flex-row align-items-center">
+          <img src="{% static 'images/hospital_room.jpg' %}" alt="Patient Room" class="card-img-left carousel-image">
+          <div class="card-body text-start">
+            <h3 class="card-title">Private Rooms</h3>
+            <p class="card-text">Designed for utmost comfort and privacy during recovery.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="carousel-item">
+        <div class="card d-flex flex-row align-items-center">
+          <img src="{% static 'images/hospital-team.jpg' %}" alt="Medical Team" class="card-img-left carousel-image">
+          <div class="card-body text-start">
+            <h3 class="card-title">Expert Medical Team</h3>
+            <p class="card-text">Providing top-quality care with professionalism and compassion.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#receptionCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#receptionCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- Admin Dashboard -->
+<div class="container mt-4 p-4 bg-light rounded shadow">
+    <h1 class="text-center text-primary">Admin Dashboard</h1>
+    <br>
+
+    <div class="row text-center">
+        <div class="col-md-4">
+            <div class="card dashboard-card p-3 shadow-lg">
+                <img src="{% static 'images/doctor.jpg' %}" alt="Doctor" class="dashboard-image">
+                <h2 class="text-primary">{{ d }}</h2>
+                <a href="{% url 'view_doctor' %}" class="dashboard-link">
+                    <h4><i class="fas fa-user-md"></i> <br> Doctors</h4>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card dashboard-card p-3 shadow-lg">
+                <img src="{% static 'images/patient.jpg' %}" alt="Patient" class="dashboard-image">
+                <h2 class="text-success">{{ p }}</h2>
+                <a href="{% url 'view_patient' %}" class="dashboard-link">
+                    <h4><i class="fas fa-user-injured"></i> <br> Patients</h4>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card dashboard-card p-3 shadow-lg">
+                <img src="{% static 'images/appointment.jpg' %}" alt="Appointment" class="dashboard-image">
+                <h2 class="text-danger">{{ a }}</h2>
+                <a href="{% url 'view_appointment' %}" class="dashboard-link">
+                    <h4><i class="fas fa-calendar-check"></i> <br> Appointments</h4>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-4 p-4 bg-light rounded shadow"> 
+  <h1 class="text-center text-primary">Employee Dashboard</h1>
+  <br>
+
+  <div class="row text-center">
+      <div class="col-md-4">
+          <div class="card dashboard-card p-3 shadow-lg">
+              <img src="{% static 'images/dashdoctor.jpg' %}" alt="Doctor" class="dashboard-image">
+              <a href="{% url 'view_doctor' %}" class="dashboard-link">
+                  <h4>🩺<br>Doctors</h4>
+              </a>
+          </div>
+      </div>
+
+      <div class="col-md-4">
+          <div class="card dashboard-card p-3 shadow-lg">
+              <img src="{% static 'images/nurse.jpg' %}" alt="Nurse" class="dashboard-image">
+              <a href="{% url 'view_nurse' %}" class="dashboard-link">
+                  <h4><i class="fas fa-user-nurse"></i><br>Nurses</h4>
+              </a>
+          </div>
+      </div>
+
+      <div class="col-md-4">
+          <div class="card dashboard-card p-3 shadow-lg">
+              <img src="{% static 'images/staff.png' %}" alt="Staff" class="dashboard-image">
+              <a href="{% url 'view_staff' %}" class="dashboard-link">
+                  <h4><i class="fas fa-user-cog"></i><br>Staff</h4>
+              </a>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Goodlife Hospital Logo Section -->
+<div class="hospital-logo">
+    <img src="{% static 'images/medical-sign.png' %}" alt="Medical Sign">
+    <span>Goodlife Hospital</span>
+</div>
+
+{% endblock %}

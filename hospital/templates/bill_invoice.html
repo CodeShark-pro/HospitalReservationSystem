@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @font-face {
+            font-family: 'DejaVu Sans';
+            src: url('/path/to/DejaVuSans.ttf') format('truetype');
+        }
+
+        body { font-family: 'DejaVu Sans', Arial, sans-serif; }
+        .center { text-align: center; margin-bottom: 30px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #000; padding: 8px; text-align: left; }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <h2>Hospital Bill Invoice</h2>
+        <p>Bill ID: {{ bill.id }} | Patient: {{ bill.patient.name }}</p>
+    </div>
+
+    <table>
+        <tr><th>Room Type</th><td>{{ bill.patient.room_type }}</td></tr>
+        <tr><th>Diagnosis Charge</th><td>{{ bill.diagnosis_charge }}</td></tr>
+        <tr><th>Scan Charge</th><td>{{ bill.scan_charge }}</td></tr>
+        <tr><th>Medicine Charge</th><td>{{ bill.medicine_charge }}</td></tr>
+        <tr><th>GST</th><td>{{ bill.gst }}%</td></tr>
+        <tr><th><strong>Total</strong></th><td><strong>{{ bill.total_amount }}</strong></td></tr>
+    </table>
+</body>
+</html>

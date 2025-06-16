@@ -1,0 +1,37 @@
+{% extends 'navigationbar.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container">
+
+    <h2 class="title">Generated Bill</h2>
+    <div class="card">
+        <p><strong>Patient:</strong> {{ bill.patient.name }}</p>
+        <p><strong>Room Type:</strong> {{ bill.patient.room_type }}</p>
+
+        <table class="billing-table">
+            <tr><th>Charge Type</th><th>Amount (₹)</th></tr>
+            <tr><td>Room Charge</td><td>{{ bill.get_room_charge }}</td></tr>
+            <tr><td>Diagnosis Charge</td><td>{{ bill.diagnosis_charge }}</td></tr>
+            <tr><td>Scan Charge</td><td>{{ bill.scan_charge }}</td></tr>
+            <tr><td>Medicine Charge</td><td>{{ bill.medicine_charge }}</td></tr>
+            <tr class="total"><td>Total Amount</td><td>₹{{ bill.total_amount }}</td></tr>
+        </table>
+    </div>
+
+    <h3 class="title">Update Billing Info</h3>
+    <div class="card">
+        <form method="post">
+            {% csrf_token %}
+
+            <label>Medicine Charge (₹):</label>
+            <input type="number" step="0.01" name="medicine_charge" required><br><br>
+
+            <button type="submit" class="btn-generate">Generate</button>
+        </form>
+    </div>
+
+    <a href="{% url 'view_bills' %}" class="btn-view">View All Bills</a>
+
+</div>
+{% endblock %}

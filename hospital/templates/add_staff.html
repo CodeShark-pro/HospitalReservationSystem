@@ -1,0 +1,30 @@
+{% extends 'navigationbar.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container mt-5">
+    <h2 class="text-center text-primary mb-4">Add Staff</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label>Name</label>
+        <input type="text" name="name" class="form-control" required><br>
+        <label>Mobile Number</label>
+        <input type="text" name="mobile_number" class="form-control" required><br>
+
+        <label>Occupation</label>
+        <input type="text" name="occupation" class="form-control" value="Staff" required><br>
+
+        <label>Shift</label>
+        <input type="text" name="shift" class="form-control" required><br>
+
+        <label>Availability</label>
+        <select name="availability" class="form-control">
+            <option value="Available">Available</option>
+            <option value="Busy">Busy</option>
+        </select><br>
+
+        <input type="submit" value="Add Staff" class="btn btn-primary">
+    </form>
+</div>
+{% endblock %}

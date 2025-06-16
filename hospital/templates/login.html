@@ -1,0 +1,31 @@
+{% extends 'navigationbar.html' %}
+{% load static %}
+{% block body %} 
+
+{% if error == "no" %}
+<script>
+    alert("Logged In Successfully");
+    window.location.href = "{% url 'main' %}";
+</script> 
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Invalid Credentials. Try Again!");
+    window.location.href = "{% url 'login' %}";
+</script>
+{% endif %}
+
+<div class="container">
+  <h2 class="text-center">Admin Login</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <label>Admin Name</label>
+    <input type="text" name="username" class="form-control" placeholder="Enter Admin Name">
+    <label>Password</label>
+    <input type="password" name="password" class="form-control" placeholder="Enter Password">
+    <input type="submit" value="Login" class="form-control btn btn-primary mt-3">
+  </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,157 @@
+{% extends 'navigationbar.html' %}
+{% load static %}
+
+{% block body %}
+<div class="doctor-header-card">
+  <h1>Meet Our Doctors</h1>
+  <p>Delve into the expertise and distinguished careers of our medical specialists.</p>
+</div>
+<div id="dr-john-doe" class="doctor-section fade-in">
+  <img src="{% static 'images/d1.jpg' %}" alt="Dr. John Doe" class="doctor-img">
+  <div class="doctor-info">
+    <h2>Dr. John Doe</h2>
+    <h3 class="profession">Cardiologist</h3>
+    <p>With a career spanning over 15 years, Dr. Doe has redefined cardiovascular intervention.</p>
+
+    <!-- Key Innovations -->
+    <div class="doctor-subsection">
+      <h4>Key Innovations:</h4>
+      <p>Developed the first transcatheter mitral valve repair device.</p>
+      <p>Authored 20+ peer-reviewed publications on interventional cardiology.</p>
+    </div>
+
+    <!-- Awards -->
+    <div class="doctor-subsection">
+      <h4>Awards:</h4>
+      <p>Recipient of the International Cardiovascular Innovator Award, 2021.</p>
+    </div>
+  </div>
+</div>
+
+<div id="dr-ram-kumar" class="doctor-section fade-in">
+  <img src="{% static 'images/d2.jpg' %}" alt="Dr. Ram Kumar" class="doctor-img">
+  <div class="doctor-info">
+    <h2>Dr. Ram Kumar</h2>
+    <h3 class="profession">Neurologist</h3>
+    <p>A trailblazer in neurophysiology, Dr. Kumar specializes in deciphering complex cerebral disorders.</p>
+
+    <!-- Discoveries -->
+    <div class="doctor-subsection">
+      <h4>Discoveries:</h4>
+      <p>Mapped new genetic markers linked to neurodegenerative diseases.</p>
+      <p>Created a novel diagnostic protocol for rare cerebral disorders.</p>
+    </div>
+
+    <!-- Experience -->
+    <div class="doctor-subsection">
+      <h4>Experience:</h4>
+      <p>Conducted over 500 successful neurophysiological interventions.</p>
+    </div>
+  </div>
+</div>
+
+<div id="dr-preeti-singh" class="doctor-section fade-in">
+  <img src="{% static 'images/d3.jpg' %}" alt="Dr. Preeti Singh" class="doctor-img">
+  <div class="doctor-info">
+    <h2>Dr. Preeti Singh</h2>
+    <h3 class="profession">Orthopedic</h3>
+    <p>Renowned for her advancements in regenerative orthopedics, Dr. Singh’s work has redefined musculoskeletal rehabilitation.</p>
+
+    <!-- Advancements -->
+    <div class="doctor-subsection">
+      <h4>Advancements:</h4>
+      <p>Introduced AI-driven bio-integrated implants in orthopedics.</p>
+      <p>Co-authored guidelines for regenerative rehabilitation.</p>
+    </div>
+
+    <!-- Recognition -->
+    <div class="doctor-subsection">
+      <h4>Recognition:</h4>
+      <p>Honored as “Orthopedics Innovator of the Year,” 2022.</p>
+    </div>
+  </div>
+</div>
+
+<div id="dr-rohit-sharma" class="doctor-section fade-in">
+  <img src="{% static 'images/d4.jpg' %}" alt="Dr. Rohit Sharma" class="doctor-img">
+  <div class="doctor-info">
+    <h2>Dr. Rohit Sharma</h2>
+    <h3 class="profession">Oncologist</h3>
+    <p>A leader in precision oncology, Dr. Sharma integrates immunotherapy with genetic profiling to tailor groundbreaking cancer treatments.</p>
+
+    <!-- Key Innovations -->
+    <div class="doctor-subsection">
+      <h4>Key Innovations:</h4>
+      <p>Developed adaptive immunotherapy methods for aggressive malignancies.</p>
+      <p>Innovated epigenetics-based cancer treatments.</p>
+    </div>
+
+    <!-- Awards -->
+    <div class="doctor-subsection">
+      <h4>Awards:</h4>
+      <p>Recipient of the International Oncology Excellence Award, 2021.</p>
+    </div>
+  </div>
+</div>
+
+<div id="dr-sachin-singh" class="doctor-section fade-in">
+  <img src="{% static 'images/d5.jpg' %}" alt="Dr. Sachin Singh" class="doctor-img">
+  <div class="doctor-info">
+    <h2>Dr. Sachin Singh</h2>
+    <h3 class="profession">Gastroenterologist</h3>
+    <p>Dr. Singh's expertise in endoscopic ultrasound has set new standards in digestive health treatment.</p>
+
+    <!-- Tech Expertise -->
+    <div class="doctor-subsection">
+      <h4>Tech Expertise:</h4>
+      <p>Pioneered advanced micro-invasive techniques for intestinal disorders.</p>
+      <p>Created training modules for gastroenterological ultrasound procedures.</p>
+    </div>
+
+    <!-- Publications -->
+    <div class="doctor-subsection">
+      <h4>Publications:</h4>
+      <p>Author of <i>Digestive Health in the 21st Century</i>.</p>
+    </div>
+  </div>
+</div>
+
+<div id="dr-anil-verma" class="doctor-section fade-in">
+  <img src="{% static 'images/d6.jpg' %}" alt="Dr. Anil Verma" class="doctor-img">
+  <div class="doctor-info">
+    <h2>Dr. Anil Verma</h2>
+    <h3 class="profession">Urologist</h3>
+    <p>Specializing in robotic-assisted surgeries, Dr. Verma’s research has transformed kidney stone management strategies.</p>
+
+    <!-- Advancements -->
+    <div class="doctor-subsection">
+      <h4>Advancements:</h4>
+      <p>Designed algorithms for robotic kidney stone surgery.</p>
+      <p>Developed predictive analytics for nephrolithiasis recurrence.</p>
+    </div>
+
+    <!-- Recognition -->
+    <div class="doctor-subsection">
+      <h4>Recognition:</h4>
+      <p>Honored as “Robotics Excellence in Medicine Award” winner, 2020.</p>
+    </div>
+  </div>
+</div>
+  
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const elements = document.querySelectorAll(".fade-in");
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        }, { threshold: 0.3 });
+        
+        elements.forEach(el => observer.observe(el));
+      });
+    </script>
+    {% endblock %}
+  

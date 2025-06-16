@@ -1,0 +1,55 @@
+{% extends 'navigationbar.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container">
+    <h2 class="text-center">Add Appointment</h2>
+    <br><br>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        <br> 
+        <label>Select Doctor</label>
+        <select name="doctor" class="form-control" required>
+            {% for doctor in doctors %}
+            <option value="{{ doctor.id }}">{{ doctor.name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label>Select Patient</label>
+        <br> 
+        <select name="patient" class="form-control" required>
+            {% for patient in patients %}
+            <option value="{{ patient.id }}">{{ patient.name }}</option>
+            {% endfor %}
+        </select>
+        <br> 
+        <label>Appointment Date</label>
+        <br> 
+        <input type="date" name="date1" class="form-control" required>
+        <br> 
+        <label>Appointment Time</label>
+        <br> 
+        <input type="time" name="time1" class="form-control" required>
+
+        <br>
+        <input type="submit" value="Add Appointment" class="form-control btn btn-primary mt-3">
+    </form>
+    <br> 
+</div>
+
+{% if error == "no" %}
+<script>
+    alert("Appointment Saved Successfully!");
+    window.location.href = "{% url 'view_appointment' %}";
+</script> 
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Something Went Wrong. Try Again!");
+    window.location.href = "{% url 'add_appointment' %}";
+</script>
+{% endif %}
+
+{% endblock %}

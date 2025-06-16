@@ -1,0 +1,122 @@
+{% extends 'navigationbar.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container feedback-container">
+    <div class="card shadow bg:blu">
+        <div class="card-body">
+            <h1 class="text-center text-light">Feedback Form</h1>
+            <h2 class="text-center text-light">We Value Your Feedback</h2>
+        </div>
+    </div>
+</div>
+<div class="container feedback-container">
+        <div class="card-body">
+            <!-- Show Success Message -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- Feedback Form -->
+            <form method="POST" class="feedback-form">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="name" class="font-weight-bold">Full Name</label>
+                    <input type="text" class="form-control border-primary rounded-pill" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="font-weight-bold">Email Address</label>
+                    <input type="email" class="form-control border-primary rounded-pill" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="font-weight-bold">Rate Our Services</label>
+                    <div class="card bg-light p-3">
+                        <div class="rating-category">
+                            <span>Wait Time:</span>
+                            <div class="stars" data-category="wait_time"></div>
+                        </div>
+                        <div class="rating-category">
+                            <span>Facility Quality:</span>
+                            <div class="stars" data-category="facility_quality"></div>
+                        </div>
+                        <div class="rating-category">
+                            <span>Treatment Quality:</span>
+                            <div class="stars" data-category="treatment_quality"></div>
+                        </div>
+                        <div class="rating-category">
+                            <span>Staff Behavior:</span>
+                            <div class="stars" data-category="staff_behavior"></div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="wait_time" id="wait_time_input">
+                <input type="hidden" name="facility_quality" id="facility_quality_input">
+                <input type="hidden" name="treatment_quality" id="treatment_quality_input">
+                <input type="hidden" name="staff_behavior" id="staff_behavior_input">
+
+                <div class="form-group low-rating-feedback" style="display: none;">
+                    <label for="additional_feedback" class="text-danger font-weight-bold">We noticed some low ratings. Could you tell us more?</label>
+                    <textarea class="form-control border-danger rounded-pill" id="additional_feedback" name="additional_feedback" rows="4"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="font-weight-bold">Any Additional Feedback?</label>
+                    <textarea class="form-control border-primary rounded-pill" id="message" name="message" rows="4"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block rounded-pill">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="feedback-button">
+    <a href="{% url 'feedback_list' %}" class="btn btn-primary">
+        <i class="fas fa-smile"></i> Feedback
+    </a>
+</div>
+
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".stars").forEach(container => {
+                const category = container.dataset.category;
+                const hiddenInput = document.getElementById(category + "_input");
+    
+                for (let i = 1; i <= 5; i++) {
+                    const star = document.createElement("i");
+                    star.classList.add("fas", "fa-star");
+                    star.dataset.value = i;
+                    container.appendChild(star);
+                }
+    
+                container.querySelectorAll("i").forEach((star, index) => {
+                    star.addEventListener("click", function () {
+                        const rating = index + 1;
+                        hiddenInput.value = rating;  // Store selected rating in hidden input
+    
+                        container.querySelectorAll("i").forEach((s, i) => {
+                            s.classList.toggle("selected", i < rating);
+                        });
+    
+                        // Show low-rating feedback if rating is below 3
+                        const feedbackBox = document.querySelector(".low-rating-feedback");
+                        feedbackBox.style.display = rating < 3 ? "block" : "none";
+                    });
+                });
+            });
+        });
+    
+</script>
+
+{% endblock %}

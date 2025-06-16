@@ -1,0 +1,51 @@
+{% extends 'navigationbar.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container" style="margin-top:50px">
+    <h1 class="text-center text-primary mb-4">View Doctor</h1>
+    <table class="table table-bordered table-striped table-hover" id="example">
+        <thead>
+            <tr>
+
+                <th>Doctor Name</th>
+                <th>Doctor Mobile</th>
+                <th>Doctor Qualification</th>
+                <th>Doctor Department</th>
+                <th>Doctor Speciality</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in doc %}
+            <tr>
+                
+                <td>{{ i.name }}</td>
+                <td>{{ i.mobile }}</td>
+                <td>{{ i.qualification }}</td>
+                <td>{{ i.department }}</td>
+                <td>{{ i.special }}</td>
+                <td>
+                    <a href="{% url 'delete_doctor' i.id %}" onclick="return confirm('Are you Sure?')" class="btn btn-danger">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody> 
+    </table>
+</div>
+
+<script>
+$(document).ready(function() {
+    new DataTable('#example', {
+        layout: {
+            topStart: {
+                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+            }
+        }
+    });
+});
+</script>
+
+{% endblock %}
